@@ -14,9 +14,20 @@
 //Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
 
 void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n) {
-
- // TODO: implement
-
-
-
+  m -= 1;
+  n -= 1;
+  (void)nums2Size;
+  for(int i = nums1Size-1; i >= 0; i--){
+    if(n<0){
+      break;
+    }
+    else if(m<0 || nums2[n] >= nums1[m]){
+      nums1[i] = nums2[n];
+      n-=1;
+    }
+    else{
+      nums1[i] = nums1[m];
+      m-=1;
+    }
+  }
 }
