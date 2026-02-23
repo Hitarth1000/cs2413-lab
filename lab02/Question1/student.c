@@ -53,7 +53,37 @@ bool isValid(const char *s) {
     //
     // Note:
     // - Input contains only bracket characters, per the prompt.
-
-    (void)s; // remove after implementing
-    return false; // placeholder
+    int size = strlen(s) / 2;
+    if(strlen(s) % 2 == 1){
+        return false;
+    }
+    char stack[256];
+    int point = -1;
+    for(int i = 0; s[i] != '\0' ; i++){
+        if(s[i] == '{' || s[i] == '(' || s[i] == '['){
+            if(point != size){
+                point += 1;
+                stack[point] = s[i];
+            } else
+            {
+                return false;
+            }    
+        }else {
+            if(point == -1){
+                return false;
+            }
+            char popped = stack[point];
+            point -= 1;
+            if((popped == '{' && s[i] == '}') || (popped == '[' && s[i] == ']') || (popped == '(' && s[i] == ')')){
+                continue;
+            }else {
+                return false;
+            }
+        }
+    }
+    if(point == -1){
+        return true;
+    } else {
+        return false;
+    }
 }
