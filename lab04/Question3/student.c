@@ -55,7 +55,20 @@ struct TreeNode {
     struct TreeNode *right;
 };
 
+void getToLeaf(struct TreeNode* root, int val,int* sum){
+    if(!root) return;
+    val = (val * 10) + root->val;
+    if(!root->left && !root->right){
+        *sum += val;
+    }else{
+        getToLeaf(root->left,val, sum);
+        getToLeaf(root->right,val, sum);
+    }
+}
 
 int sumNumbers(struct TreeNode* root) {
       // TODO: implement
+      int sum = 0; 
+      getToLeaf(root,0, &sum);
+      return sum;
 }

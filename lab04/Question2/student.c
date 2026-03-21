@@ -48,8 +48,22 @@ struct TreeNode {
     struct TreeNode *right;
 };
 
-
+bool isSame(struct TreeNode* root_left,struct TreeNode* root_right){
+  if(!root_left && !root_right){
+    return true;
+  }
+  else if(root_left && root_right && root_left->val == root_right->val){
+    return (isSame(root_left->left,root_right->right) && isSame(root_left->right,root_right->left));
+  }else{
+    return false;
+  }
+}
 
 bool isSymmetric(struct TreeNode* root) {
   // TODO: implement
+  if(!root){
+    return true;
+  }else{
+    return isSame(root->left,root->right);
+  }
 }
