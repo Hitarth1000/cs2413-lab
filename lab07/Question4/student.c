@@ -20,7 +20,15 @@ Notes:
 */
 
 void insertionSort(int arr[], int size) {
-    // TODO: implement insertion sort
+    for(int i = 0; i < size; i += 1){
+      int j = i;
+      while(j > 0 && arr[j-1] > arr[j]){
+        int temp = arr[j];
+        arr[j] = arr[j-1];
+        arr[j-1] = temp;
+        j -= 1;
+      }  
+    }
     (void)arr;
     (void)size;
 }
